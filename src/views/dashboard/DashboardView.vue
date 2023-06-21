@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import TotalOffersCard from "../components/TotalOffersCard.vue";
-import TotalRepeatersCard from "../components/TotalRepeatersCard.vue";
-import TotalCLVCard from "../components/TotalCLVCard.vue";
-import DailyTrendCLV from "../components/DailyTrendCLV.vue";
+import TotalOffersCard from "./TotalOffersCard.vue";
+import TotalRepeatersCard from "./TotalRepeatersCard.vue";
+import TotalCLVCard from "./TotalCLVCard.vue";
+import DailyTrendCLV from "./DailyTrendCLV.vue";
 </script>
 
 <template>

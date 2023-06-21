@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { formatNumberPrefix } from "../utils/number-formatter"
-import DonutChart from "./DonutChart.vue"
-import Card from './Card.vue'
+import { formatNumberPrefix } from "../../utils/number-formatter"
+import DonutChart from "../../components/ui/DonutChart.vue"
+import Card from '../../components/ui/Card.vue'
 
 export interface TotalRepeatersCardProps {
     experimental: number

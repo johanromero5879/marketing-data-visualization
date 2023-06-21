@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue"
-import Card from "../components/Card.vue";
-import LineChart from "../components/LineChart.vue";
+import Card from "../../components/ui/Card.vue";
+import LineChart from "../../components/ui/LineChart.vue";
 
 const data = ref([
   { "label": "2021-03-13", "expSum": 2, "ctrlSum": 2 },

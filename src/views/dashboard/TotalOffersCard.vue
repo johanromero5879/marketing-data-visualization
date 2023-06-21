@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue"
 
-import { formatNumberPrefix } from "../utils/number-formatter"
-import Card from './Card.vue'
-import DonutChart from "../components/DonutChart.vue";
-import TagIcon from "../icons/TagIcon.vue"
+import { formatNumberPrefix } from "../../utils/number-formatter"
+import Card from '../../components/ui/Card.vue'
+import DonutChart from "../../components/ui/DonutChart.vue";
+import TagIcon from "../../components/ui//icons/TagIcon.vue"
 
 export interface TotalOffersCardProps {
     total: number,
