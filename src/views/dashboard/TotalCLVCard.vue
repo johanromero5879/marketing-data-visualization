@@ -14,7 +14,7 @@ defineProps<TotalCLVCardProps>()
 <template>
     <Card>
         <template v-slot:header>
-            <h3 class="pb-2 text-center font-semibold text-xl">
+            <h3 class="text-center font-semibold text-xl">
                 Total CLV
             </h3>
         </template>

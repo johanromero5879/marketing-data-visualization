@@ -24,7 +24,7 @@ const percentage = (num: number, total: number) => (num / total * 100).toFixed(1
       <template 
         v-slot:header
       >
-        <h3 class="pb-2 text-center font-semibold text-xl">
+        <h3 class="text-center font-semibold text-xl">
           Total repeaters
         </h3>
       </template>
