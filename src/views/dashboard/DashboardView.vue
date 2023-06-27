@@ -7,24 +7,14 @@ import TotalRepeatersCard from "./TotalRepeatersCard.vue";
 import TotalCLVCard from "./TotalCLVCard.vue";
 import DailyTrendCLV from "./DailyTrendCLV.vue";
 
-import { getChartData } from "../../services/get-chart-data"
 import { getWidgets } from "../../services/get-widgets"
-import { WidgetsData, ChartData, Filter } from "../../types"
+import { WidgetsData } from "../../types"
 
 const widgets = ref<WidgetsData>()
-const charData = ref<ChartData[]>()
 
 onBeforeMount(async () => {
-  const [ widgetsData, chartData ] = await Promise.all([getWidgets(), getChartData()])
-
-  widgets.value = widgetsData
-  charData.value = chartData
-
+  widgets.value = await getWidgets()
 })
-
-const handleDailyCLVFilter = async (filter: Filter) => {
-  charData.value = await getChartData(filter)
-}
 
 </script>
 
@@ -47,11 +37,7 @@ const handleDailyCLVFilter = async (filter: Filter) => {
             :experimental="widgets!.totalCLVExp"
           />
         </div>
-        <DailyTrendCLV 
-          v-if="charData"
-          :data="charData"
-          @change-filter="handleDailyCLVFilter"
-        />
+        <DailyTrendCLV />
       </div>
   </DefaultLayout>
 </template>

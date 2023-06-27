@@ -7,29 +7,30 @@ import NumberField from "../../components/ui/NumberField.vue"
 import RadioButton from "../../components/ui/RadioButton.vue"
 import DatePicker from "../../components/ui/DatePicker.vue"
 
-export interface LastPeriod {
+import { Filter } from "../../types"
+
+interface LastPeriod {
     number: number
     period: "day" | "week" | "month" | "year"
 }
 
-export interface AbsolutePeriod {
+interface AbsolutePeriod {
     startDate: string
     endDate: string
 }
 
-
-const emit = defineEmits(["update:last-period", "update:absolute-period"])
+const emit = defineEmits(["changeFilter"])
 
 const timeFilter = ref("period")
 
-const lastPeriod = ref({
+const lastPeriod = ref<LastPeriod>({
     number: 3,
     period: "year"
 })
 
 const today = dayjs().format("YYYY-MM-DD")
 
-const absolutePeriod = ref({
+const absolutePeriod = ref<AbsolutePeriod>({
     startDate: today,
     endDate: ''
 })
@@ -37,14 +38,34 @@ const absolutePeriod = ref({
 /* Watch last period object */
 watch([timeFilter, lastPeriod], ([newTimeFilter, newLastPeriod]) => {
     if (newTimeFilter === "period") {
-        emit("update:last-period", newLastPeriod)
+        // Convert string to date and check if it's valid
+        const startDate = dayjs().subtract(newLastPeriod.number, newLastPeriod.period)
+        if (!startDate.isValid()) return
+
+        const filter: Filter = { 
+            startDate: startDate.toDate() 
+        }
+
+        emit("changeFilter", filter)
     }
 }, { deep: true })
 
 /* Watch absolute period object */
 watch([timeFilter, absolutePeriod], ([newTimeFilter, newAbsolutePeriod]) => {
     if (newTimeFilter === "absolute") {
-        emit("update:absolute-period", newAbsolutePeriod)
+
+        const startAt = dayjs(newAbsolutePeriod.startDate)
+        const endAt = dayjs(newAbsolutePeriod.endDate)
+
+        const filter: Filter = {
+            startDate: startAt.toDate()
+        }
+
+        if (endAt.isValid()) {
+            filter.endDate = endAt.toDate()
+        }
+
+        emit("changeFilter", newAbsolutePeriod)
     }
 }, { deep: true })
 
