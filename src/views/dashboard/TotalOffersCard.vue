@@ -4,7 +4,7 @@ import { computed } from "vue"
 import { formatNumberPrefix } from "../../utils/number-formatter"
 import Card from '../../components/ui/Card.vue'
 import DonutChart from "../../components/ui/DonutChart.vue";
-import TagIcon from "../../components/ui//icons/TagIcon.vue"
+import { TagIcon } from "@heroicons/vue/24/outline"
 
 export interface TotalOffersCardProps {
     total: number,

@@ -21,7 +21,7 @@ const checked = computed(() => props.modelValue === props.value)
 </script>
 
 <template>
-    <label class="text-zinc-100 flex cursor-pointer items-center">
+    <label class="flex cursor-pointer items-center">
         <div class="relative">
             <input
                 type="radio"

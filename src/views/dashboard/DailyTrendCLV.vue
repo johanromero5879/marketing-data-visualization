@@ -2,14 +2,47 @@
 import Card from "../../components/ui/Card.vue";
 import LineChart from "../../components/ui/LineChart.vue";
 
-import { ChartData } from "../../types"
+import dayjs from "dayjs"
+
+import TimeFilter, { LastPeriod, AbsolutePeriod } from "./TimeFilter.vue";
+
+import { ChartData, Filter } from "../../types"
 
 interface Props {
   data: ChartData[]
 }
 
 defineProps<Props>()
+
+const emit = defineEmits(["changeFilter"])
+
+const handleLastPeriod = async ({ number, period }: LastPeriod) => {
+  const startDate = dayjs().subtract(number, period)
+  if (!startDate.isValid()) return
+
+  const filter: Filter = { 
+    startDate: startDate.toDate() 
+  }
+
+  emit("changeFilter", filter)
+}
+
+const handleAbsolutePeriod = async({ startDate, endDate }: AbsolutePeriod) => {
+  const startAt = dayjs(startDate)
+  const endAt = dayjs(endDate)
+
+  const filter: Filter = {
+    startDate: startAt.toDate()
+  }
+
+  if (endAt.isValid()) {
+    filter.endDate = endAt.toDate()
+  }
+
+  emit("changeFilter", filter)
+}
 </script>
+
 
 <template>
     <Card>
@@ -18,14 +51,17 @@ defineProps<Props>()
               Daily Trending CLV
           </h3>
       </template>
+      <TimeFilter 
+        @update:last-period="handleLastPeriod"
+        @update:absolute-period="handleAbsolutePeriod"
+      />
       <LineChart
         :colors="['#F59E0B', '#22C55E']"
         type="datetime"
-        :categories="data.map(d => d.label)"
         
         :series="[
-          { name: 'Experimental', data: data.map(d => d.expSum) },
-          { name: 'Control', data: data.map(d => d.ctrlSum) },
+          { name: 'Experimental', data: data.map(d => ({ x: d.label, y: d.expSum })) },
+          { name: 'Control', data: data.map(d => ({ x: d.label, y: d.ctrlSum })) },
         ]"
       />
     </Card>

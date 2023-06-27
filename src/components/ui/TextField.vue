@@ -18,7 +18,7 @@ const updateValue = (event: Event) => {
 </script>
 
 <template>
-    <div class="text-zinc-100 flex flex-col gap-2">
+    <div class="flex flex-col gap-2">
         <label 
             class="text-sm"
             v-if="label"

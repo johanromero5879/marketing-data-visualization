@@ -2,9 +2,14 @@
 import { ref } from "vue";
 import { ApexOptions } from "apexcharts";
 
+interface SerieData {
+  x: string
+  y: number
+}
+
 interface Serie {
   name: string,
-  data: number[]
+  data: SerieData[] | number[]
 }
 
 type ChartType = "category" | "datetime" | "numeric"
@@ -12,12 +17,13 @@ type ChartType = "category" | "datetime" | "numeric"
 export interface LineChartProps {
   colors?: string[],
   series: Serie[],
-  categories: (number | string)[],
+  categories?: (number | string)[],
   type?: ChartType
 }
 
 const props = withDefaults(defineProps<LineChartProps>(), {
-  type: "category"
+  type: "category",
+  categories: () => []
 })
 
 const options = ref<ApexOptions>({

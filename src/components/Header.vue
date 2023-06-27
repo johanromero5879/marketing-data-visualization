@@ -14,7 +14,7 @@ const user = ref({
 </script>
 
 <template>
-    <header class="flex justify-end sticky top-0 z-50 py-4 px-4 bg-zinc-800 md:px-6 2xl:px-11">
+    <header class="flex justify-end sticky top-0 z-40 py-4 px-4 bg-zinc-800 md:px-6 2xl:px-11">
         <div class="flex gap-3 items-center">
             <div class="hidden text-right lg:flex lg:flex-col">
                 <span>{{ user.fullname }}</span>
