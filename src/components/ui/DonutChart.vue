@@ -1,6 +1,12 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import { storeToRefs } from "pinia"
 import { ApexOptions } from "apexcharts";
+
+import { useThemeStore } from "../../store/theme"
+
+const themeStore = useThemeStore()
+const { theme } = storeToRefs(themeStore)
 
 export interface DonutChartProps {
   title?: string
@@ -27,7 +33,7 @@ const options = ref<ApexOptions>({
     }
   },
   theme: {
-    mode: "dark"
+    mode: theme.value
   },
   colors: props.colors,
   labels: props.labels,
@@ -57,6 +63,16 @@ const options = ref<ApexOptions>({
     show: false
   }
 });
+
+/* Change theme in chart options when global theme change */
+watch(theme, () => {
+  options.value = {
+    theme: {
+      mode: theme.value
+    },
+    colors: props.colors
+  }
+})
 </script>
 
 <template>

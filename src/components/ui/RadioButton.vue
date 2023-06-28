@@ -31,7 +31,9 @@ const checked = computed(() => props.modelValue === props.value)
                 :checked="checked"
                 @change="updateSelectedOption(value)"
             />
-            <div :class="`mr-2 flex h-5 w-5 items-center justify-center rounded-full border ${checked ? 'border-sky-500': ''}`">
+            <div 
+                :class="`mr-2 flex h-5 w-5 items-center justify-center rounded-full border 
+                ${checked ? 'border-sky-500': 'border-zinc-400 dark:border-sky-100'}`">
                 <span :class="`h-2.5 w-2.5 rounded-full bg-transparent ${checked ? '!bg-sky-500': ''}`">
                     &nbsp;
                 </span>

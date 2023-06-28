@@ -33,7 +33,7 @@ const updateValue = (event: Event) => {
             {{ label }}
         </label>
         <select
-            class="rounded-sm py-2 px-3 bg-zinc-700 focus:outline-none"
+            class="rounded-sm py-2 px-3 focus:outline-none border border-zinc-300 dark:bg-zinc-800 dark:border-zinc-600"
             :id="name"
             :name="name"
             :value="modelValue"

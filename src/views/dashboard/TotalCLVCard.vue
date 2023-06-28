@@ -20,11 +20,11 @@ defineProps<TotalCLVCardProps>()
         </template>
         <template class="flex justify-center gap-8">
             <div class="text-sm flex flex-col items-center">
-                <span class="text-2xl font-semibold text-green-400 ">${{ formatNumberPrefix(experimental) }}</span>
+                <span class="text-2xl font-semibold text-green-700 dark:text-green-400 ">${{ formatNumberPrefix(experimental) }}</span>
                 <span>Experimental</span>
             </div>
             <div class="text-sm flex flex-col items-center">
-                <span class="text-2xl font-semibold text-green-400">${{ formatNumberPrefix(control) }}</span>
+                <span class="text-2xl font-semibold text-green-700 dark:text-green-400">${{ formatNumberPrefix(control) }}</span>
                 <span>Control</span>
             </div>
         </template>

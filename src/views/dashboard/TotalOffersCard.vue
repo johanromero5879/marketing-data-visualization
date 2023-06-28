@@ -6,6 +6,7 @@ import Card from '../../components/ui/Card.vue'
 import DonutChart from "../../components/ui/DonutChart.vue";
 import { TagIcon } from "@heroicons/vue/24/outline"
 
+
 export interface TotalOffersCardProps {
     total: number,
     top?: number
@@ -23,7 +24,7 @@ const totalWithSuffix = computed(() => formatNumberPrefix(props.total))
     <Card>
       <template class="flex justify-between items-end">
         <div class="text-sm flex flex-col">
-          <div class="w-10 h-10 rounded-full bg-zinc-700 p-2 mb-2">
+          <div class="w-10 h-10 rounded-full bg-zinc-300 dark:bg-zinc-700 p-2 mb-2">
             <TagIcon />
           </div>
           <span class="text-2xl font-semibold">{{ totalWithSuffix }}</span>

@@ -1,6 +1,12 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import { storeToRefs } from "pinia"
 import { ApexOptions } from "apexcharts";
+
+import { useThemeStore } from "../../store/theme"
+
+const themeStore = useThemeStore()
+const { theme } = storeToRefs(themeStore)
 
 interface SerieData {
   x: string
@@ -28,7 +34,7 @@ const props = withDefaults(defineProps<LineChartProps>(), {
 
 const options = ref<ApexOptions>({
   theme: {
-    mode: "dark",
+    mode: theme.value,
   },
   colors: props.colors,
   chart: {
@@ -49,7 +55,7 @@ const options = ref<ApexOptions>({
     width: 2
   },
   grid: {
-    borderColor: "#4B5563",
+    borderColor: "#71717A",
     xaxis: {
       lines: {
         show: true,
@@ -93,6 +99,16 @@ const options = ref<ApexOptions>({
     }
   ]
 });
+
+/* Change theme in chart options when global theme change */
+watch(theme, () => {
+  options.value = {
+    theme: {
+      mode: theme.value
+    },
+    colors: props.colors
+  }
+})
 </script>
 
 <template>

@@ -11,7 +11,7 @@ import { Filter } from "../../types"
 
 interface LastPeriod {
     number: number
-    period: "day" | "week" | "month" | "year"
+    period: "week" | "month" | "year"
 }
 
 interface AbsolutePeriod {
@@ -100,7 +100,6 @@ watch([timeFilter, absolutePeriod], ([newTimeFilter, newAbsolutePeriod]) => {
                     v-model="lastPeriod.period"
                     name="last-period"
                     :items="[
-                        { label: 'Day', value: 'day' },
                         { label: 'Week', value: 'week' },
                         { label: 'Month', value: 'month' },
                         { label: 'Year', value: 'year' }

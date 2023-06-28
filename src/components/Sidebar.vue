@@ -22,7 +22,7 @@ const items = ref([
         icon: markRaw(Squares2X2Icon),
         label: "Dashboard",
         to: "/"
-    },
+    }
 ])
 
 const clickOutsideHandler = ({ target }: MouseEvent) => {
@@ -55,14 +55,15 @@ watch(
 
 <template>
     <aside
-        :class="`absolute h-screen top-0 left-0 z-50 w-72 flex flex-col bg-zinc-800 ease-linear duration-300 lg:static lg:translate-x-0
-        ${ isOpen ? 'translate-x-0' : '-translate-x-full' }`"
+        :class="`absolute h-screen top-0 left-0 z-50 w-72 flex flex-col lg:static lg:translate-x-0
+            bg-zinc-900 dark:bg-zinc-800 duration-300 ease-linear 
+            ${ isOpen ? 'translate-x-0' : '-translate-x-full' }`"
         ref="sidebar"
     >
         <!-- Sidebar header -->
         <header class="px-5 py-6 flex gap-3 items-center justify-between">
             <div class="flex items-center gap-2">
-                <div class="p-2 rounded-full bg-sky-500 ">
+                <div class="p-2 rounded-full bg-sky-500 text-zinc-100">
                     <ShoppingBagIcon class="w-5 h-5" />
                 </div>
                 <h1 class="text-2xl text-zinc-100">Market Tool</h1>
@@ -83,15 +84,15 @@ watch(
                 MENU
             </h3>
 
-            <ul class="flex flex-col gap-1">
+            <ul class="flex flex-col gap-1 text-zinc-100">
                 <li 
-                    class="rounded-sm hover:bg-zinc-900"
+                    class="rounded-sm hover:bg-zinc-800 dark:hover:bg-zinc-900"
                     v-for="{icon, label, to} of items"
                 >
                     <router-link 
                         class="flex gap-1 px-4 py-3 items-center"
                         :to="to"
-                        active-class="border-r-4 border-r-sky-500 bg-zinc-900"
+                        active-class="border-r-4 border-r-sky-500 bg-zinc-800 dark:bg-zinc-900"
                     >
                         <component 
                             class="w-5 h-5"

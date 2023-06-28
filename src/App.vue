@@ -1,6 +1,4 @@
 <template>
-  <main class="min-h-screen bg-zinc-900">
-    <router-view></router-view>
-  </main>
+  <router-view></router-view>
 </template>
 
